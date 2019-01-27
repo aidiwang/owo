@@ -1,13 +1,9 @@
 fileFormatVersion: 2
-guid: c5eee92cbfcadb54da77618ec67dc4c5
+guid: 44ec382f81565a5459925a5a4d4de1de
 TextureImporter:
   fileIDToRecycleName:
-    21300000: slime_death_0
-    21300002: slime_death_1
-    21300004: slime_death_2
-    21300006: slime_death_3
-    21300008: slime_death_4
-
+    21300000: wall_flipped_0
+    21300002: wall_flipped_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -51,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 30
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -86,127 +82,45 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slime_death_0
+      name: wall_flipped_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 37
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e702424542e9374e89746e34d31539d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_flipped_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 64
-        height: 64
+        y: 9
+        width: 28
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 22, y: 22, z: 22, w: 22}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5c06fb34ab9b2448ab4571ebc0acc7c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slime_death_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 22, y: 22, z: 22, w: 22}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 82658a8134117b6498429b2470b1056f
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slime_death_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 22, y: 22, z: 22, w: 22}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2c32d040c6b4305459dc1c2438e8bb29
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slime_death_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 22, y: 22, z: 22, w: 22}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e97ae784533ec194babd24bd65e8b0c8
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slime_death_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 22, y: 22, z: 22, w: 22}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 74830f6069120814c96984c84c4e8a28
+      spriteID: 13634e7843186bf4caf6c69b8555820a
       vertices: []
       indices: 
       edges: []
@@ -214,7 +128,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e407a879831bd704cb7141ce9174510d
+    spriteID: 657d99b4163641945975d46dc57fc2f1
     vertices: []
     indices: 
     edges: []
