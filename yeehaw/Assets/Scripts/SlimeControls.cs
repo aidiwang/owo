@@ -88,6 +88,7 @@ public class SlimeControls : MonoBehaviour
             animator.SetBool("doubleJumping", false);
 	    	Debug.Log("land");
 	    	// jumping = false;
+            jumping = false;
             jump2 = false;
             falling = false;
     	// }
