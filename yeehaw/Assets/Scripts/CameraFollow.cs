@@ -13,7 +13,9 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = new Vector3(transform.position.x, player.position.y,transform.position.z);
-        
+        if (transform.position.y > player.position.y)
+        {
+            transform.position = new Vector3(transform.position.x, player.position.y, transform.position.z);
+        }
     }
 }
