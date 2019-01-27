@@ -3,6 +3,8 @@
 public class CameraFollow : MonoBehaviour
 {
     public Transform player;
+    public Transform bg;
+
     //public float speed = 0.125f;
     public float cameraDistance = 30.0f;
 
@@ -13,7 +15,11 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = new Vector3(transform.position.x, player.position.y,transform.position.z);
-        
+
+        if (transform.position.y > player.position.y)
+        {
+            transform.position = new Vector3(transform.position.x, player.position.y, transform.position.z);
+        }
+            
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SlimeControls : MonoBehaviour
 {
@@ -23,9 +24,35 @@ public class SlimeControls : MonoBehaviour
 		rb2d.freezeRotation=true;
     }
 
+    void deathScene()
+    {
+        SceneManager.LoadScene("deathscene", LoadSceneMode.Additive);
+    }
+
     // Update is called once per frame
     void Update()
     {
+        //game over
+        /*
+        if (dead)
+        {
+            Invoke("deathScene", 1);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                dead = false;
+                SceneManager.LoadScene("combine", LoadSceneMode.Additive);
+                Application.LoadLevel(Application.loadedLevel);
+            }
+
+        }
+        */
+
+        if (dead && Input.GetKeyDown(KeyCode.Space))
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+      
         // Vector2 move = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
     	// rb2d.position += move * speed * Time.deltaTime;
 
