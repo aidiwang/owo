@@ -84,13 +84,15 @@ public class SlimeControls : MonoBehaviour
     	// Vector2 center = collider.bounds.center;
     	// bool bottom = contactPoint.y > center.y;
     	// if (bottom){
-	    	animator.SetBool("isJumping", false);
-            animator.SetBool("doubleJumping", false);
-	    	Debug.Log("land");
-	    	// jumping = false;
-            jumping = false;
-            jump2 = false;
-            falling = false;
+        float move = Input.GetAxisRaw("Horizontal");
+
+    	animator.SetBool("isJumping", false);
+        animator.SetBool("doubleJumping", false);
+    	Debug.Log("land");
+    	// jumping = false;
+        jumping = false;
+        jump2 = false;
+        falling = false;
     	// }
 
         if (col.gameObject.tag == "DangerObject") {
@@ -98,6 +100,14 @@ public class SlimeControls : MonoBehaviour
             dead = true;
             Debug.Log("you died.");
         }
+
+        if (col.gameObject.tag == "Wall" && System.Math.Abs(move) > 0) {
+            animator.SetBool("wallHug", true);
+        }
+        else {
+            animator.SetBool("wallHug", false);
+        }
+        
     }
 
     // void jumping()
