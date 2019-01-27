@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundScript : MonoBehaviour
 {
-    public static AudioClip slimePop, slimeJump, slimeSquish;
+    public static AudioClip slimePop, slimeJump, slimeSquish, chomp;
     static AudioSource audioSource; 
 
     // Start is called before the first frame update
@@ -13,6 +13,8 @@ public class SoundScript : MonoBehaviour
         slimePop = Resources.Load<AudioClip>("pop3");
         slimeJump = Resources.Load<AudioClip>("jump");
         slimeSquish = Resources.Load<AudioClip>("squish1");
+        chomp = Resources.Load<AudioClip>("chomp");
+        
         audioSource = GetComponent<AudioSource>();
 
     }
@@ -29,6 +31,9 @@ public class SoundScript : MonoBehaviour
                 break;
             case "squish":
                 audioSource.PlayOneShot(slimeSquish);
+                break;
+            case "chomp":
+                audioSource.PlayOneShot(chomp);
                 break;
 
         }
