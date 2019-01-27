@@ -7,10 +7,13 @@ public class SlimeControls : MonoBehaviour
 
 	public float speed;
 	public Vector2 jumpHeight;
+    public Vector2 jump2Height;
 	Rigidbody2D rb2d;
 	public Animator animator;
 	bool jumping = false;
+    bool falling = false;
     bool dead = false;
+    bool jump2 = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,15 +45,30 @@ public class SlimeControls : MonoBehaviour
     	//Vector2 jump = new Vector2(0, Input.GetAxisRaw("Vertical"));
     	//rb2d.position += jump * jumpspeed * Time.deltaTime;
 
-    	if (Input.GetKeyDown(KeyCode.Space) && !jumping) {
+    	if (Input.GetKeyDown(KeyCode.Space) && !jumping && !falling && !jump2) {
     		animator.SetBool("isJumping", true);
     		Debug.Log("jump");
     		// Vector2 jump = new Vector2(0, 1);
     		// rb2d.position += jump * jumpspeed * Time.deltaTime;
     		rb2d.AddForce(jumpHeight, ForceMode2D.Impulse);
     		jumping = true;
-    		// jumping();
+            // jumping();
+        }
+        if (Input.GetKeyUp(KeyCode.Space) && jumping && !falling && !jump2){
+            jumping = false;
+            falling = true;
+            jump2 = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && !jumping && falling && jump2) {
+            animator.SetBool("doubleJumping", true);
+            Debug.Log("jump2");
+            // Vector2 jump = new Vector2(0, 1);
+            // rb2d.position += jump * jumpspeed * Time.deltaTime;
+            rb2d.AddForce(jump2Height, ForceMode2D.Impulse);
+            falling = false;
     	}
+
+        
     	// else{
     	// 	animator.SetBool("isJumping", false);
     	// }
@@ -67,8 +85,11 @@ public class SlimeControls : MonoBehaviour
     	// bool bottom = contactPoint.y > center.y;
     	// if (bottom){
 	    	animator.SetBool("isJumping", false);
+            animator.SetBool("doubleJumping", false);
 	    	Debug.Log("land");
-	    	jumping = false;
+	    	// jumping = false;
+            jump2 = false;
+            falling = false;
     	// }
 
         if (col.gameObject.tag == "DangerObject") {
