@@ -6,6 +6,8 @@ TagManager:
   tags:
   - DangerObject
   - Wall
+  - WallL
+  - WallR
   layers:
   - Default
   - TransparentFX
