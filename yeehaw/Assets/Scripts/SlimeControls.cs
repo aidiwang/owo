@@ -8,6 +8,7 @@ public class SlimeControls : MonoBehaviour
 	public float speed;
 	public Vector2 jumpHeight;
     public Vector2 jump2Height;
+    // public float jump2Height;
 	Rigidbody2D rb2d;
 	public Animator animator;
 	bool jumping = false;
@@ -46,6 +47,7 @@ public class SlimeControls : MonoBehaviour
     	//rb2d.position += jump * jumpspeed * Time.deltaTime;
 
     	if (Input.GetKeyDown(KeyCode.Space) && !jumping && !falling && !jump2) {
+            SoundScript.PlaySound("jump");
     		animator.SetBool("isJumping", true);
     		Debug.Log("jump");
     		// Vector2 jump = new Vector2(0, 1);
@@ -60,11 +62,16 @@ public class SlimeControls : MonoBehaviour
             jump2 = true;
         }
         if (Input.GetKeyDown(KeyCode.Space) && !jumping && falling && jump2) {
+            SoundScript.PlaySound("jump");
             animator.SetBool("doubleJumping", true);
             Debug.Log("jump2");
             // Vector2 jump = new Vector2(0, 1);
-            // rb2d.position += jump * jumpspeed * Time.deltaTime;
+            // rb2d.MovePosition = jump * jumpspeed * Time.deltaTime;
             rb2d.AddForce(jump2Height, ForceMode2D.Impulse);
+            // Vector2 vel = rb2d.velocity;
+            // vel.y = Mathf.Sqrt(2f * jump2Height * Physics2D.gravity.y);
+            // rb2d.velocity = vel;
+            
             falling = false;
     	}
 
@@ -85,29 +92,54 @@ public class SlimeControls : MonoBehaviour
     	// bool bottom = contactPoint.y > center.y;
     	// if (bottom){
         float move = Input.GetAxisRaw("Horizontal");
-
-    	animator.SetBool("isJumping", false);
-        animator.SetBool("doubleJumping", false);
-    	Debug.Log("land");
-    	// jumping = false;
-        jumping = false;
-        jump2 = false;
-        falling = false;
+        if (col.gameObject.tag != "WallL" || col.gameObject.tag != "WallR"){
+            animator.SetBool("isJumping", false);
+            animator.SetBool("doubleJumping", false);
+            Debug.Log("land");
+        	// jumping = false;
+            jumping = false;
+            jump2 = false;
+            falling = false;
+        }
     	// }
 
         if (col.gameObject.tag == "DangerObject") {
+            SoundScript.PlaySound("pop");
             animator.SetBool("isDangerous", true);
             dead = true;
             Debug.Log("you died.");
         }
 
-        if (col.gameObject.tag == "Wall" && System.Math.Abs(move) > 0) {
+        if (col.gameObject.tag == "WallL" || col.gameObject.tag == "WallR") {
+            SoundScript.PlaySound("squish1");
             animator.SetBool("wallHug", true);
         }
-        else {
+    }
+
+    void OnCollisionStay2D(Collision2D col) {
+        float move = Input.GetAxisRaw("Horizontal");
+        if (col.gameObject.tag == "WallL") {
+            if (move < 0) {
+                animator.SetBool("wallHug", true);
+            }
+            else{
+                animator.SetBool("wallHug", false);
+            }
+        }
+        else if (col.gameObject.tag == "WallR") {
+            if (move > 0) {
+                animator.SetBool("wallHug", true);
+            }
+            else{
+                animator.SetBool("wallHug", false);
+            }
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D col) {
+        if (col.gameObject.tag == "Wall") {
             animator.SetBool("wallHug", false);
         }
-        
     }
 
     // void jumping()
