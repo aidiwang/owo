@@ -1,0 +1,88 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SlimeControls : MonoBehaviour
+{
+
+	public float speed;
+	public Vector2 jumpHeight;
+	Rigidbody2D rb2d;
+	public Animator animator;
+	bool jumping = false;
+    bool dead = false;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+		rb2d.freezeRotation=true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Vector2 move = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
+    	// rb2d.position += move * speed * Time.deltaTime;
+
+    	float move = Input.GetAxisRaw("Horizontal");
+
+    	if (move > 0 && !dead) {
+    		rb2d.velocity = new Vector2(move * speed, rb2d.velocity.y);
+    		transform.localScale = new Vector2(1, 1);
+    	}
+    	else if (move < 0 && !dead) {
+    		rb2d.velocity = new Vector2(move * speed, rb2d.velocity.y);
+    		transform.localScale = new Vector2(-1, 1);
+    	}
+    	else {
+    		rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+    	}
+
+    	//Vector2 jump = new Vector2(0, Input.GetAxisRaw("Vertical"));
+    	//rb2d.position += jump * jumpspeed * Time.deltaTime;
+
+    	if (Input.GetKeyDown(KeyCode.Space) && !jumping) {
+    		animator.SetBool("isJumping", true);
+    		Debug.Log("jump");
+    		// Vector2 jump = new Vector2(0, 1);
+    		// rb2d.position += jump * jumpspeed * Time.deltaTime;
+    		rb2d.AddForce(jumpHeight, ForceMode2D.Impulse);
+    		jumping = true;
+    		// jumping();
+    	}
+    	// else{
+    	// 	animator.SetBool("isJumping", false);
+    	// }
+
+    	// if(Input.GetKeyDown(KeyCode.DownArrow)){
+    	// 	animator. SetBool("isJumping", false);
+    	// }
+    }
+
+    void OnCollisionEnter2D(Collision2D col){
+    	// Collider2D collider = col.collider;
+    	// Vector2 contactPoint = col.contacts[0].point;
+    	// Vector2 center = collider.bounds.center;
+    	// bool bottom = contactPoint.y > center.y;
+    	// if (bottom){
+	    	animator.SetBool("isJumping", false);
+	    	Debug.Log("land");
+	    	jumping = false;
+    	// }
+
+        if (col.gameObject.tag == "DangerObject") {
+            animator.SetBool("isDangerous", true);
+            dead = true;
+            Debug.Log("you died.");
+        }
+    }
+
+    // void jumping()
+    // {
+    // 	yield WaitForSeconds(animations["slime_jump"].clip.length);
+    // 	animator.SetBool("isJumping", false);
+    // }
+
+
+}
