@@ -46,6 +46,7 @@ public class SlimeControls : MonoBehaviour
     	//rb2d.position += jump * jumpspeed * Time.deltaTime;
 
     	if (Input.GetKeyDown(KeyCode.Space) && !jumping && !falling && !jump2) {
+            SoundScript.PlaySound("jump");
     		animator.SetBool("isJumping", true);
     		Debug.Log("jump");
     		// Vector2 jump = new Vector2(0, 1);
@@ -60,6 +61,7 @@ public class SlimeControls : MonoBehaviour
             jump2 = true;
         }
         if (Input.GetKeyDown(KeyCode.Space) && !jumping && falling && jump2) {
+            SoundScript.PlaySound("jump");
             animator.SetBool("doubleJumping", true);
             Debug.Log("jump2");
             // Vector2 jump = new Vector2(0, 1);
@@ -96,12 +98,14 @@ public class SlimeControls : MonoBehaviour
     	// }
 
         if (col.gameObject.tag == "DangerObject") {
+            SoundScript.PlaySound("pop");
             animator.SetBool("isDangerous", true);
             dead = true;
             Debug.Log("you died.");
         }
 
         if (col.gameObject.tag == "Wall" && System.Math.Abs(move) > 0) {
+            SoundScript.PlaySound("squish1");
             animator.SetBool("wallHug", true);
         }
         else {
