@@ -7,7 +7,6 @@ TextureImporter:
     21300004: slime_death_2
     21300006: slime_death_3
     21300008: slime_death_4
-
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -51,7 +50,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 45
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
